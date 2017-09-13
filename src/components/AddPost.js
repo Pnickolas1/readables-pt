@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Navbar} from './Navbar'
 
 class AddPost extends Component {
 
@@ -7,32 +8,35 @@ class AddPost extends Component {
 
         return (
             <div>
-              <div className="card-header">Add Post</div>
-              <form onSubmit={(e) => this.onSubmitPost(e)}>
-                <input 
-                  className="form-control col-4"
-                  name="title"
-                  id="title"
-                  placeholder="Title"
-                  required
-                />
-                <br />
+                <Navbar />
+                <div className="card bg-light mb-3">
+                <div className="card-header bg-dark text-white">Add Post</div>
+                <form onSubmit={(e) => this.onSubmitPost(e)}>
+                  <input 
+                    className="form-control col-4"
+                    name="title"
+                    id="title"
+                    placeholder="Title"
+                    required
+                  />
+                  <br />
 
-                <input
-                  className="form-control col-4"
-                  name="author"
-                  id="author"
-                  type="text"
-                  placeholder="Author"
-                  required
-                />
-                <br />
+                  <input
+                    className="form-control col-4"
+                    name="author"
+                    id="author"
+                    type="text"
+                    placeholder="Author"
+                    required
+                  />
+                  <br />
 
-                <select className="this" />
+                  <select className="this" width={150} />
 
 
-              </form>
-            </div>
+                </form>
+              </div>
+          </div>
         )
     }
 }
