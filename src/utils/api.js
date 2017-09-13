@@ -43,6 +43,10 @@ export function getAllCategories(){
 
 //POSTS
 
+export function getAllPosts(){
+    return axios.get(`${API_URL}/posts`, API_URL)
+}
+
 export function writePost(post){
     return axios.get(`${API_URL}/posts`,API_HEADER)
 }
@@ -52,10 +56,10 @@ export function updatePost(post){
 }
 
 export function getPostbyCategory(category){
-    return axios.get(`${API_URL}/category/posts`, API_HEADER)
+    return axios.get(`${API_URL}/${category}/posts`, API_HEADER)
 }
 
-export function getPostsRefID(postid){
+export function getPostRefID(postid){
     return axios.get(`${API_URL}/posts/${postid}`, API_HEADER)
 }
 
