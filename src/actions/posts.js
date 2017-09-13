@@ -65,7 +65,7 @@ export function loadAllPosts(){
 
 export function loadPostRefId(postid){
     return function (dispatch){
-        return api.getPostRefID.then(response => {
+        return api.getPostRefID(postid).then(response => {
             if(response){
                 dispatch(getPostByID(response.data))
             }
@@ -73,3 +73,63 @@ export function loadPostRefId(postid){
     }
 }
 
+export function loadPostsByCategory(category){
+    return function (dispatch){
+        return api.getPostbyCategory(category).then(repsonse =>{
+            if(response){
+                dispatch(fetchPosts(response.data))
+            }
+        })
+    }
+}
+
+export function editPost(post){
+    return function(dispatch){
+        return api.updatePost(post).then(response => {
+            if(response){
+                dispatch(updatePost(response))
+            }
+        })
+    }
+}
+
+export function deletePost(post){
+    return function (dispatch) {
+        return api.removePost(post).then(response => {
+            if(response){
+                dispatch(removePost(response))
+            }
+        })
+    }
+}
+
+export function addPostVote(postid){
+    return function (dispatch){
+        return api.plusPostVote(postid).then(response => {
+            if(response){
+                dispatch(updatePost(postid))
+            }
+        })
+    }
+}
+
+
+export function minusPostVote(postid){
+    return function (dispatch){
+        return api.minusPostVote(postid).then(response => {
+            if(response){
+                dispatch(updatePost(postid))
+            }
+        })
+    }
+}
+
+export function createPost(post){
+    return function (dispatch){
+        return api.writePost(post).then(response =>{
+            if(response){
+                dispatch(writePost(post))
+            }
+        })
+    }
+}
