@@ -107,7 +107,7 @@ class PostsPage extends Component {
                 </div>
             <div className="row margin-top-10">
                 <div className="col-md-2">
-                    <label className="control-label">Sort Method:</label>
+                    <label className="control-label">Sort Method</label>
                     <select className="form-control" value={this.state.sort} onChange={this.updateSort.bind(this)}>
                     <option value="voteTotal">Vote Total</option>
                     <option value="time">Time</option>         
