@@ -89,7 +89,7 @@ class Post extends Component {
     render() {
         if(this.state.post){
             return (
-                <div classNam="row">
+                <div className="row">
                     <div className="col-md-12">
                         <div className="card margin-top-10" key={this.state.post.id}>
                             <div className="card-body">
@@ -127,15 +127,20 @@ class Post extends Component {
                             <form onSubmit={this.savePost}>
                                 <div className="form-group">
                                     <label>Title</label>
-                                    <input type="text" className="form-control" id="title" placeholder="Title" onChange={this.handleInputChange.bind(this)} value={this.state.editPost.title} required={true} />
+                                    <input type="text" className="form-control" id="title" placeholder="Title" 
+                                            onChange={this.handleInputChange.bind(this)} value={this.state.editPost.title} 
+                                            required={true} />
                                 </div>
                                 <div className="form-group">
                                     <label>Comment</label>
-                                    <textarea className="form-control" id="body" placeholder="whats on your mind?" onChange={this.handleInputChange.bind(this)} value={this.state.editPost} required={true} />
+                                    <textarea className="form-control" id="body" placeholder="whats on your mind?" 
+                                        onChange={this.handleInputChange.bind(this)} value={this.state.editPost.body} 
+                                        required={true} />
                                 </div>
                                 <div className="form-check">
                                     <label>Categories</label>
-                                            <select className="form-control" id="category" value={this.state.editPost.category} onChange={this.handleInputChange.bind(this)} required={true}>
+                                            <select className="form-control" id="category" value={this.state.editPost.category} 
+                                                onChange={this.handleInputChange.bind(this)} required={true}>
                                                 {this.state.categories.map(category => (
                                                     <option value={category.name} key={category.path}>{category.name}</option>
                                                 ))}

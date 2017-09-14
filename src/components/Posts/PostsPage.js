@@ -73,7 +73,7 @@ class PostsPage extends Component {
 
     let post = this.state.newPost;
     post['id'] = helpers.generateId();
-    post['time'] = Date.now()
+    post['timestamp'] = Date.now()
     post['author'] = 'LateRndPick';
     post['voteTotal'] = 1
     this.props.actions.makePost(post)
@@ -110,7 +110,7 @@ class PostsPage extends Component {
                     <label className="control-label">Sort Method</label>
                     <select className="form-control" value={this.state.sort} onChange={this.updateSort.bind(this)}>
                     <option value="voteTotal">Vote Total</option>
-                    <option value="time">Time</option>         
+                    <option value="timestamp">Time</option>         
                     </select>
                 </div>
                 <div className="col-md-2 justify-content-center ml-md-auto">

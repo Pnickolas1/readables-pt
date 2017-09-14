@@ -59,7 +59,7 @@ class CategoryPage extends Component {
                             <label className="control-label">Sort</label>
                             <select clasName="form-control" value={this.state.sort} onChange={this.updateSort.bind(this)}>
                                 <option value="Vote">Votes</option>
-                                <option value="Time">Time</option>
+                                <option value="timestamp">Time</option>
                             </select>
                         </div>
                     </div>

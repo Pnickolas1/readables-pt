@@ -13,7 +13,7 @@ class Vote extends Component {
     }
 
     plusVote = e => {
-        e.preventdefault();
+        e.preventDefault();
         switch(this.state.type) {
             case "post":
                 return this.props.actions.addPostVote(this.state.id)
@@ -25,7 +25,7 @@ class Vote extends Component {
     }
 
     minusVote = e => {
-        e.preventdefault();
+        e.preventDefault();
         switch (this.state.type){
             case "post":
                 return this.props.actions.minusPostVote(this.state.id)

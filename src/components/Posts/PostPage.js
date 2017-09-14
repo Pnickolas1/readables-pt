@@ -17,7 +17,7 @@ class PostPage extends Component {
 
     componentWillMount(){
         let postid = this.props.match.params.id
-        this.props.actions.loadPostRedId(postid)
+        this.props.actions.loadPostRefId(postid)
         this.props.actions.loadComments(postid)
     }
 

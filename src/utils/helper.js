@@ -6,11 +6,14 @@ export function sort(state, type='voteTotal'){
 }
 
 
+export function time(timestamp) {
+    return moment(timestamp).fromNow()
+  }
+  
+
 export function generateId() {
     return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
 }
 
 
-export function time(time) {
-    return moment(time).fromNow()
-  }
+

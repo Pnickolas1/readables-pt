@@ -24,7 +24,7 @@ class Comments extends Component {
             id: helpers.generateId(),
             body: e.target.comment.value,
             parentid: this.props.post.id,
-            time: Date.now(),
+            timestamp: Date.now(),
             author: 'LateRndPick',
             voteTotal: 1
         }
@@ -93,7 +93,7 @@ class Comments extends Component {
               <label className="control-label">Sort</label>
               <select className="form-control sort-by-selection" value={this.state.sort} onChange={this.updateSort.bind(this)}>
                 <option value="voteTotal">Vote Total</option>
-                <option value="time">Time</option>
+                <option value="timestamp">Time</option>
               </select>
             </div>
             </div>
@@ -102,7 +102,7 @@ class Comments extends Component {
               {this.state.comments.map(comment => (
                 <div className="" key={comment.id}>
                   <h6 style={{marginBottom: 2}} className="margin-top-10"><b>{comment.author}:</b>
-                    <span className="text-muted">{helpers.time(comment.time)}</span> &nbsp;
+                    <span className="text-muted">{helpers.time(comment.timestamp)}</span> &nbsp;
                     <span><i className="fa fa-pencil-square text-info" id={comment.id} onClick={this.commentEdit.bind(this)}></i></span>;
                     <span><i onClick={this.deleteComment.bind(this)} id={comment.id} className="fa fa-minus-square text-danger"></i></span> ;
                   </h6>
