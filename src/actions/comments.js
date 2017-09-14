@@ -31,7 +31,7 @@ export function updateComment(comment){
 }
 
 export function removeComment(comment){
-    return{
+    return {
         type: REMOVE_COMMENT,
         comment: comment
     }
@@ -82,7 +82,7 @@ export function minusComment(commentid){
     }
 }
 
-export function removeComment(commentid){
+export function removeAComment(commentid){
     return function (dispatch){
         return api.removeComment(commentid).then( response => {
             if(response){
@@ -94,7 +94,7 @@ export function removeComment(commentid){
 
 export function editComment(commentid){
     return function(dispatch){
-        return api.updateComment(comment).then(response => {
+        return api.updateComment(commentid).then(response => {
             if (response){
                 return dispatch(updateComment(response.data))
             }

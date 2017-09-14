@@ -26,7 +26,7 @@ class Post extends Component {
         openModal: false,
         }
 
-    componentWillRecieveProps(newProps){
+    componentWillReceiveProps(newProps){
         if(newProps.post){
             this.setState({
                 post: newProps.post,
