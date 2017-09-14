@@ -6,6 +6,14 @@ const API_HEADER = { headers: {
     'Content-Type': 'application/json'
     }}
 
+
+//  CATEGORIES
+
+export function getAllCategories(){
+    return axios.get( `${API_URL}/categories`, API_HEADER)
+}
+
+
 // COMMENTS
 export function getAllComments(postid){
     return axios.get(`${API_URL}/posts/${postid}/comments`, API_HEADER)
@@ -33,12 +41,6 @@ export function minusCommentVote(commentid){
 
 
 
-
-//  CATEGORIES
-
-export function getAllCategories(){
-    return axios.get( `${API_URL}/categories`, API_HEADER)
-}
 
 
 //POSTS
@@ -72,5 +74,5 @@ export function minusPostVote(postid){
 }
 
 export function removePost(postid){
-    return axios.delete()`${API_URL}/posts/${postid}`,API_HEADER
+    return axios.delete(`${API_URL}/posts/${postid}`,API_HEADER)
 }

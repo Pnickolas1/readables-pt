@@ -3,7 +3,7 @@ import { Navbar } from '../Navbar';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../actions/posts';
 import { connect } from 'react-redux';
-import * as helpers from '../../utils/helpers';
+import * as helpers from '../../utils/helper';
 import PostList from '../Posts/PostList';
 
 class CategoryPage extends Component {
@@ -29,6 +29,16 @@ class CategoryPage extends Component {
         })
     }
 
+    updateSort (e) {
+    let sort = e.target.value
+    this.setState((prevState) => ({
+      posts: helpers.sort(prevState.posts, sort),
+      sort: sort
+    }))
+  }
+
+
+
     render() {
         return (
             <div className="container-fluid" style={{padding:5}}>
@@ -47,7 +57,7 @@ class CategoryPage extends Component {
                     <div className="row margin-top-10">
                         <div className="col-md-2">
                             <label className="control-label">Sort</label>
-                            <select clasName="form-control" value={this.state.sort} onChange={this.UpdateSort.bind(this)}>
+                            <select clasName="form-control" value={this.state.sort} onChange={this.updateSort.bind(this)}>
                                 <option value="Vote">Votes</option>
                                 <option value="Time">Time</option>
                             </select>
@@ -66,7 +76,7 @@ class CategoryPage extends Component {
     }
 }
 
-function mapSateToProps(stsate, props){
+function mapSateToProps(state, props){
     return {
         posts: state.posts,
         categories: state.categories

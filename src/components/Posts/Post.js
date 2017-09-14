@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Comments from '../comments';
+import Comments from '../Comments';
 import * as actions from '../../actions/posts';
 import * as helpers from '../../utils/helper';
 import Vote from '../Vote';

@@ -3,7 +3,7 @@ import * as api from '../utils/api';
 import { GET_ALL_COMMENTS, 
     MAKE_COMMENT, 
     UPDATE_COMMENT, 
-    REMOVE_COMMENT } from '../actionType'
+    REMOVE_COMMENT } from './actionType'
 
 
 

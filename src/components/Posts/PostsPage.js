@@ -13,7 +13,7 @@ class PostsPage extends Component {
         this.state = {
             posts: this.props.posts,
             sort: this.props.sort,
-            categorgies: this.state.categorgies,
+            categories: this.props.categories,
             openModal: false,
             makeEdits: false,
             newPost: {
@@ -32,7 +32,7 @@ class PostsPage extends Component {
         this.setState({
             posts: newProps.posts,
             sort: newProps.sort,
-            categorgies: newProps.categorgies
+            categories: newProps.categories
         })
     }
 
@@ -73,7 +73,7 @@ class PostsPage extends Component {
 
     let post = this.state.post.newPost;
     post['id'] = helpers.generateId();
-    post['timestamp'] = Date.now()
+    post['time'] = Date.now()
     post['author'] = 'LateRndPick';
     post['voteTotal'] = 1
     this.props.actions.makePost(post)
@@ -96,7 +96,7 @@ class PostsPage extends Component {
                         <div className="col-md-12">
                             <label className="control-label">Category</label>
                             <div className="alert alert-info" role="alert">
-                                {this.state.categories.map(categorgy => (
+                                {this.state.categories.map(category => (
                                     <a href={"/"+category.path} style={{textDecorationColor: null}} key={category.path} className="margin-20">
                                         <h1 className="badge badge-secondary" style={{fontSize: 14 }}>{category.name}</h1>
                                     </a>
@@ -131,7 +131,7 @@ class PostsPage extends Component {
                         <form onSubmit={this.createPost}>
                         <div className="form-group">
                             <label>Title</label>
-                            <input type="text" className="form-control" id="title" placeholder="Enter title" value={this.state.newPost.title} onChange={this.handleChange.bind(this)} required={true}/>
+                            <input type="text" className="form-control" id="title" placeholder="Title" value={this.state.newPost.title} onChange={this.handleChange.bind(this)} required={true}/>
                         </div>
                         <div className="form-group">
                             <label>Comment</label>
@@ -151,7 +151,6 @@ class PostsPage extends Component {
                 </div>
                 </Modal>
             </div>
-              
         )
     }
 }

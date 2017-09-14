@@ -1,6 +1,6 @@
 import * as api from '../utils/api';
 
-export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const GET_CATEGORIES = 'GET_CATEGORIES'
 
 
 export function loadAllCategories(){
@@ -14,9 +14,9 @@ export function loadAllCategories(){
 };
 
 
-export function getCategories(categories){
+export function getCategories(categories) {
     return {
-        type: GET_CATEGORIES,
-        categories: categories
+      type: GET_CATEGORIES,
+      categories: categories
     }
-};
+  }
