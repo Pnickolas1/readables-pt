@@ -100,7 +100,7 @@ class Post extends Component {
                                         </div>
                                         <div className="col-md-2 ml-md-auto">
                                             <button className="btn btn-info btn-sm margin-15" id={this.state.post.id} onClick={this.editPost}><i className="fa fa-pencil"></i></button>
-                                            <button className="btn btn-danger btn-sm" id={this.state.post.id} onClick={this.deletepost.bind(this)}><i className="fa fa-trash"></i></button>
+                                            <button className="btn btn-danger btn-sm" id={this.state.post.id} onClick={this.deletePost.bind(this)}><i className="fa fa-trash"></i></button>
                                         </div>
                                     </div>
                                 </h3>
@@ -120,7 +120,7 @@ class Post extends Component {
 
 
                     <Modal isOpen={this.state.openModal} contentLabel="Create Modal">
-                        <i className="fa fa-close pull-right" onClick={this.closeModal.bind(this)}></i>
+                        <i className="fa fa-close pull-right" onClick={this.minimizeModal.bind(this)}></i>
                         <div className="row">
                             <div className="col-md-12">
                                 <h4>Edit</h4>

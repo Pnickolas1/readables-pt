@@ -71,7 +71,7 @@ class PostsPage extends Component {
             openModal: false
         })
 
-    let post = this.state.post.newPost;
+    let post = this.state.newPost;
     post['id'] = helpers.generateId();
     post['time'] = Date.now()
     post['author'] = 'LateRndPick';
