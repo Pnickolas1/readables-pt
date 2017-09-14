@@ -159,7 +159,7 @@ function mapStateToProps(state){
     return {
         posts: helpers.sort(state.posts),
         sort: 'voteTotal',
-        categorgies: state.categorgies
+        categories: state.categories
     }
 }
 
