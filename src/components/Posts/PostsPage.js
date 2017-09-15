@@ -13,15 +13,15 @@ const shortid = require('shortid')
 class PostsPage extends Component {
     constructor(props, context){
         super(props, context);
-        this.updateSort = this.state.updateSort.bind(this);
-        this.handleChange = this.state.handleChange.bind(this);
+        this.updateSort = this.updateSort.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.state = {
             openModal: false,
             makeEdits: false,
             newPost: {
                 'title': '',
                 'body': '',
-                'category':''
+                'category':'redux'
             }
         }
     }
@@ -144,7 +144,7 @@ class PostsPage extends Component {
                         <div className="form-check">
                             <label>Category </label>
                             <select className="form-control" id="category" defaultValue={this.state.newPost.category} onChange={this.handleChange} required={true}>
-                            {this.state.categories.map(category => (
+                            {this.props.categories.map(category => (
                                 <option value={category.name} key={category.path}>{category.name}</option>
                             ))}
                             </select>

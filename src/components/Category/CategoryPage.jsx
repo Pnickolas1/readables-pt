@@ -21,7 +21,7 @@ class CategoryPage extends Component {
         this.props.actions.loadPostsByCategory(category)
     }
 
-    componentWillRecieveProps(newProps){
+    componentWillReceiveProps(newProps){
         this.setState({
             posts: newProps.posts,
             categories: newProps.categories,
@@ -57,7 +57,7 @@ class CategoryPage extends Component {
                     <div className="row margin-top-10">
                         <div className="col-md-2">
                             <label className="control-label">Sort</label>
-                            <select clasName="form-control" value={this.state.sort} onChange={this.updateSort}>
+                            <select className="form-control" value={this.state.sort} onChange={this.updateSort}>
                                 <option value="voteTotal">Votes</option>
                                 <option value="timestamp">Time</option>
                             </select>
