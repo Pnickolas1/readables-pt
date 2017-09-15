@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { Navbar } from '../Navbar';
 import { bindActionCreators } from 'redux';
-import * as actions from '../../actions/posts';
 import { connect } from 'react-redux';
 import PostList from './PostList';
 import * as helpers from '../../utils/helper';
 import Modal from 'react-modal';
+import * as postactions from "../../actions/posts";
+import * as commentactions from "../../actions/comments";
 const shortid = require('shortid')
+
 
 class PostsPage extends Component {
     constructor(props, context){
         super(props, context);
+        this.updateSort = this.state.updateSort.bind(this);
+        this.handleChange = this.state.handleChange.bind(this);
         this.state = {
-            posts: this.props.posts,
-            sort: this.props.sort,
-            categories: this.props.categories,
             openModal: false,
             makeEdits: false,
             newPost: {
@@ -90,6 +91,7 @@ class PostsPage extends Component {
 
     render(){
         return (
+        <div className="container">
             <div className="container-fluid" style={{padding:0}}>
                 <Navbar />
                 <div className="container">
@@ -97,7 +99,7 @@ class PostsPage extends Component {
                         <div className="col-md-12">
                             <label className="control-label">Category</label>
                             <div className="alert alert-info" role="alert">
-                                {this.state.categories.map(category => (
+                                {this.props.categories.map(category => (
                                     <a href={"/"+category.path} style={{textDecorationColor: null}} key={category.path} className="margin-20">
                                         <h1 className="badge badge-secondary" style={{fontSize: 14 }}>{category.name}</h1>
                                     </a>
@@ -109,7 +111,7 @@ class PostsPage extends Component {
             <div className="row margin-top-10">
                 <div className="col-md-2">
                     <label className="control-label">Sort Method</label>
-                    <select className="form-control" value={this.state.sort} onChange={this.updateSort.bind(this)}>
+                    <select className="form-control" value={this.state.sort} onChange={this.updateSort}>
                     <option value="voteTotal">Vote Total</option>
                     <option value="timestamp">Time</option>         
                     </select>
@@ -123,6 +125,7 @@ class PostsPage extends Component {
                     <PostList posts={this.state.posts} />
                 </div>
             </div>
+        </div>
 
                 <Modal isOpen={this.state.openModal} contentLabel="Create Modal">
                 <i className="fa fa-close pull-right" onClick={this.closeModal}></i>
@@ -132,15 +135,15 @@ class PostsPage extends Component {
                         <form onSubmit={this.createPost}>
                         <div className="form-group">
                             <label>Title</label>
-                            <input type="text" className="form-control" id="title" placeholder="Title" value={this.state.newPost.title} onChange={this.handleChange.bind(this)} required={true}/>
+                            <input type="text" className="form-control" id="title" placeholder="Title" value={this.state.newPost.title} onChange={this.handleChange} required={true}/>
                         </div>
                         <div className="form-group">
                             <label>Comment</label>
-                            <textarea className="form-control" id="body" placeholder="whats on your mind?"  onChange={this.handleChange.bind(this)} required={true}/>
+                            <textarea className="form-control" id="body" placeholder="whats on your mind?"  onChange={this.handleChange} required={true}/>
                         </div>
                         <div className="form-check">
                             <label>Category </label>
-                            <select className="form-control" id="category" onChange={this.handleChange.bind(this)} required={true}>
+                            <select className="form-control" id="category" defaultValue={this.state.newPost.category} onChange={this.handleChange} required={true}>
                             {this.state.categories.map(category => (
                                 <option value={category.name} key={category.path}>{category.name}</option>
                             ))}
@@ -166,6 +169,7 @@ function mapStateToProps(state){
 
 
 function mapDispatchToProps(dispatch){
+    let actions = {...commentactions, ...postactions}
     return { actions: bindActionCreators(actions, dispatch)}
 }
 

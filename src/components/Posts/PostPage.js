@@ -8,13 +8,6 @@ import Post from './Post';
 
 class PostPage extends Component {
 
-
-    state = {
-        post: this.props.posts, 
-        comments: this.props.comments,
-        categories: this.props.categories
-    }
-
     componentWillMount(){
         let postid = this.props.match.params.id
         this.props.actions.loadPostRefId(postid)
@@ -22,6 +15,9 @@ class PostPage extends Component {
     }
 
     componentWillReceiveProps(newProps){
+        if(newProps.posts === null) {
+            return newProps.history.push("/404")
+        }
         this.setState({
             post: newProps.posts[0],
             comments: newProps.comments
@@ -36,7 +32,7 @@ class PostPage extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
-                            <Post post={this.state.post} displayBody={true}  comments={this.state.comments} showComments={true} />
+                           {this.props.posts[0]} <Post post={this.props.post[0]} displayBody={true}  comments={this.props.comments} showComments={true} />
                         </div>
                     </div>
                 </div>
