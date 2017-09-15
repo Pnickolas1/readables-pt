@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PostList from './PostList';
 import * as helpers from '../../utils/helper';
 import Modal from 'react-modal';
+const shortid = require('shortid')
 
 class PostsPage extends Component {
     constructor(props, context){
@@ -72,7 +73,7 @@ class PostsPage extends Component {
         })
 
     let post = this.state.newPost;
-    post['id'] = helpers.generateId();
+    post['id'] = shortid.generate();
     post['timestamp'] = Date.now()
     post['author'] = 'LateRndPick';
     post['voteTotal'] = 1
