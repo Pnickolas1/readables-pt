@@ -12,7 +12,7 @@ class CategoryPage extends Component {
             this.updateSort = this.updateSort.bind(this)
     }
         state = {
-            sort: 'voteTotal'
+            sort: 'voteScore'
         }
     
 
@@ -58,7 +58,7 @@ class CategoryPage extends Component {
                         <div className="col-md-2">
                             <label className="control-label">Sort</label>
                             <select className="form-control" value={this.state.sort} onChange={this.updateSort}>
-                                <option value="voteTotal">Votes</option>
+                                <option value="voteScore">Votes</option>
                                 <option value="timestamp">Time</option>
                             </select>
                         </div>

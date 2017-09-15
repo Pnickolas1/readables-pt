@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API_URL = "http://localhost:3001"
-const APP_HEADER = { headers: { 'Authorization': 'LateRoundPick48','Content-Type': 'application/json'}}
+const APP_HEADER =  { headers: { 'Authorization': 'LateRoundPick', 'Content-Type': 'application/json' }}
 
 
 //  CATEGORIES
@@ -9,35 +9,6 @@ const APP_HEADER = { headers: { 'Authorization': 'LateRoundPick48','Content-Type
 export function getAllCategories(){
     return axios.get( `${API_URL}/categories`, APP_HEADER)
 }
-
-
-// COMMENTS
-export function getAllComments(postid){
-    return axios.get(`${API_URL}/posts/${postid}/comments`, APP_HEADER)
-}
-
-export function makeComment(comment){
-    return axios.post(`${API_URL}/comments`, comment, APP_HEADER)
-}
-
-export function updateComment(comment){
-    return axios.put(`${API_URL}/comments/${comment.id}`, comment, APP_HEADER)
-}
-
-export function removeComment(comment){
-    return axios.delete(`${API_URL}/comments/${comment.id}`, APP_HEADER)
-}
-
-export function plusCommentVote(commentid){
-    return axios.post(`${API_URL}/comments/${commentid}`, {option: "plusVote"}, APP_HEADER)
-}
-
-export function minusCommentVote(commentid){
-    return axios.post(`${API_URL}/comments/${commentid}`, {option: "minusVote"}, APP_HEADER)
-}
-
-
-
 
 
 //POSTS
@@ -73,3 +44,34 @@ export function minusPostVote(postid){
 export function removePost(postid){
     return axios.delete(`${API_URL}/posts/${postid}`,APP_HEADER)
 }
+
+
+
+// COMMENTS
+export function getAllComments(postid){
+    return axios.get(`${API_URL}/posts/${postid}/comments`, APP_HEADER)
+}
+
+export function makeComment(comment){
+    return axios.post(`${API_URL}/comments`, comment, APP_HEADER)
+}
+
+export function updateComment(comment){
+    return axios.put(`${API_URL}/comments/${comment.id}`, comment, APP_HEADER)
+}
+
+export function removeComment(comment){
+    return axios.delete(`${API_URL}/comments/${comment.id}`, APP_HEADER)
+}
+
+export function plusCommentVote(commentid){
+    return axios.post(`${API_URL}/comments/${commentid}`, {option: "plusVote"}, APP_HEADER)
+}
+
+export function minusCommentVote(commentid){
+    return axios.post(`${API_URL}/comments/${commentid}`, {option: "minusVote"}, APP_HEADER)
+}
+
+
+
+

@@ -18,7 +18,7 @@ class Comments extends Component {
       }
 
     state ={
-        sort: 'voteTotal',
+        sort: 'voteScore',
         commentEdit: {},
         openModal: false,
         makeEdits: false
@@ -32,7 +32,7 @@ class Comments extends Component {
             parentid: this.props.post.id,
             timestamp: Date.now(),
             author: 'LateRndPick',
-            voteTotal: 1
+            voteScore: 1
         }
         this.props.actions.makeNewComment(comment)
         e.target.comment.value = ""
@@ -106,7 +106,7 @@ class Comments extends Component {
                 <div className="col-md-4 ml-md-auto">
               <label className="control-label">Sort</label>
               <select className="form-control sort-by-selection" value={this.state.sort} onChange={this.updateSort}>
-                <option value="voteTotal">Vote Total</option>
+                <option value="voteScore">Vote Total</option>
                 <option value="timestamp">Time</option>
               </select>
             </div>
@@ -121,7 +121,7 @@ class Comments extends Component {
                     <span><i onClick={this.deleteComment.bind(this)} id={comment.id} className="fa fa-minus-square text-danger"></i></span> ;
                   </h6>
                   <span className="text-muted">{comment.body}</span>
-                  <p style={{marginBottom:0}}>Votes {comment.voteTotal}</p>
+                  <p style={{marginBottom:0}}>Votes {comment.voteScore}</p>
                   <Vote size={20} id={comment.id} type={"comment"} />
                 </div>
               )): []}

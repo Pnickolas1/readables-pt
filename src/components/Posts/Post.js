@@ -130,7 +130,7 @@ class Post extends Component {
                             { this.props.displayBody ? <h4>{this.props.post.body}</h4>: ''}
                             <div className="row">
                                 <div className="col-md-2">
-                                    <p style={{fontsize:"14px", marginBottom:0 }}>Votes: {this.props.post.voteTotal}</p>
+                                    <p style={{fontsize:"14px", marginBottom:0 }}>Votes: {this.props.post.voteScore}</p>
                                     <Vote size={20} id={this.props.post.id} type={"post"} />
                                 </div>
                             </div>
