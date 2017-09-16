@@ -77,7 +77,7 @@ class PostsPage extends Component {
     post['id'] = shortid.generate();
     post['timestamp'] = Date.now()
     post['author'] = 'LateRndPick';
-    post['voteTotal'] = 1
+    post['voteScore'] = 1
     this.props.actions.makePost(post)
     this.setState({
         newPost: {
@@ -112,7 +112,7 @@ class PostsPage extends Component {
                 <div className="col-md-2">
                     <label className="control-label">Sort Method</label>
                     <select className="form-control" value={this.state.sort} onChange={this.updateSort}>
-                    <option value="voteTotal">Vote Total</option>
+                    <option value="voteScore">Vote Total</option>
                     <option value="timestamp">Time</option>         
                     </select>
                 </div>
@@ -162,7 +162,7 @@ class PostsPage extends Component {
 function mapStateToProps(state){
     return {
         posts: helpers.sort(state.posts),
-        sort: 'voteTotal',
+        sort: 'voteScore',
         categories: state.categories
     }
 }

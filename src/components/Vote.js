@@ -14,11 +14,11 @@ class Vote extends Component {
 
     plusVote = e => {
         e.preventDefault();
-        switch(this.state.type) {
+        switch(this.props.type) {
             case "post":
-                return this.props.actions.addPostVote(this.state.id)
+                return this.props.actions.addPostVote(this.props.id)
             case "comment":
-                return this.props.actions.plusComment(this.state.id)
+                return this.props.actions.plusComment(this.props.id)
             default:
                 console.log("please check code in vote.js plusVote method")
         }
@@ -26,11 +26,11 @@ class Vote extends Component {
 
     minusVote = e => {
         e.preventDefault();
-        switch (this.state.type){
+        switch (this.props.type){
             case "post":
-                return this.props.actions.minusPostVote(this.state.id)
+                return this.props.actions.minusPostVote(this.props.id)
             case "comment":
-                return this.props.actions.minusComment(this.state.id)
+                return this.props.actions.minusComment(this.props.id)
             default: 
                 console.log("please check code in vote.js minusVote method")
         }
@@ -39,7 +39,8 @@ class Vote extends Component {
   componentWillReceiveProps(newProps) {
     this.setState({
       size: newProps.size,
-      id: newProps.id
+      id: newProps.id,
+      type: newProps.type
     })
   }
 
