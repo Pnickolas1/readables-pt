@@ -95,7 +95,7 @@ export function makePost(post){
 export function fetchPosts(posts){
     return {
         type: GET_POSTS,
-        posts: posts.filter(post => post.delete !== false)
+        posts: posts.filter(post => post.deleted !== false)
     }
 }
 
