@@ -11,11 +11,11 @@ class CategoryPage extends Component {
         super(props, context)
             this.updateSort = this.updateSort.bind(this)
     }
-        state = {
-            sort: 'voteScore'
-        }
-    
 
+    state = {
+        sort: 'voteScore'
+    }
+    
     componentWillMount(){
         let category = this.props.match.params.category
         this.props.actions.loadPostsByCategory(category)
@@ -37,8 +37,6 @@ class CategoryPage extends Component {
     })
   }
 
-
-
     render() {
         return (
             <div className="container-fluid" style={{padding:0}}>
@@ -49,7 +47,7 @@ class CategoryPage extends Component {
                             <label className="control-label">Category</label>
                             <div className="alert alert-info" role="alert">
                                 {this.props.categories.map(category => (
-                                    <a href={"/"+category.path} style={{textDecorationColor: null}} key={category.path} className="margin-15"><h1 className="badge badge-secondary" style={{fontSize:14}}>{category.name}</h1></a>
+                                    <a href={"/"+category.path} style={{textDecoration: null}} key={category.path} className="margin-15"><h1 className="badge badge-secondary" style={{fontSize:14}}>{category.name}</h1></a>
                                 ))}
                             </div>
                         </div>

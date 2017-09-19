@@ -15,11 +15,11 @@ class PostPage extends Component {
     }
 
     componentWillReceiveProps(newProps){
-        if(newProps.posts === null) {
+        if(newProps.posts[0] === null) {
             return newProps.history.push("/404")
         }
         this.setState({
-            post: newProps.posts[0],
+            posts: newProps.posts[0],
             comments: newProps.comments
         })
     }
@@ -32,7 +32,7 @@ class PostPage extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
-                           {this.props.posts[0]} <Post post={this.props.post[0]} displayBody={true}  comments={this.props.comments} showComments={true} />
+                           {this.props.posts[0] ? <Post post={this.props.post[0]} displayBody={true}  comments={this.props.comments[this.props.posts[0].id]} showComments={true} />: ""}
                         </div>
                     </div>
                 </div>

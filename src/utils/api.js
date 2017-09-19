@@ -34,11 +34,11 @@ export function getPostRefID(postid){
 }
 
 export function plusPostVote(postid){
-    return axios.post(`${API_URL}/posts/${postid}`,{option: "plusVote"}, APP_HEADER)
+    return axios.post(`${API_URL}/posts/${postid}`,{option: "upVote"}, APP_HEADER)
 }
 
 export function minusPostVote(postid){
-    return axios.post(`${API_URL}/posts/${postid}`,{option: "minusVote"}, APP_HEADER )
+    return axios.post(`${API_URL}/posts/${postid}`,{option: "downVote"}, APP_HEADER )
 }
 
 export function removePost(postid){
@@ -49,6 +49,10 @@ export function removePost(postid){
 
 // COMMENTS
 export function getAllComments(postid){
+    return axios.get(`${API_URL}/posts/${postid}/comments`, APP_HEADER)
+}
+
+export function getCommentsById(postid){
     return axios.get(`${API_URL}/posts/${postid}/comments`, APP_HEADER)
 }
 
@@ -65,11 +69,11 @@ export function removeComment(comment){
 }
 
 export function plusCommentVote(commentid){
-    return axios.post(`${API_URL}/comments/${commentid}`, {option: "plusVote"}, APP_HEADER)
+    return axios.post(`${API_URL}/comments/${commentid}`, {option: "upVote"}, APP_HEADER)
 }
 
 export function minusCommentVote(commentid){
-    return axios.post(`${API_URL}/comments/${commentid}`, {option: "minusVote"}, APP_HEADER)
+    return axios.post(`${API_URL}/comments/${commentid}`, {option: "downVote"}, APP_HEADER)
 }
 
 

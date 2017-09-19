@@ -7,56 +7,13 @@ import { GET_ALL_COMMENTS,
 
 
 
-// ALL COMMENT ACTIONS
-
-export function getAllComments(comments) {
-    return {
-        type: GET_ALL_COMMENTS,
-        comments: comments
-    }
-}
-
-export function makeComment(comment){
-    return{
-        type: MAKE_COMMENT,
-        comment: comment
-    }
-}
-
-export function updateComment(comment){
-    return {
-        type: UPDATE_COMMENT,
-        comment: comment
-    }
-}
-
-export function removeComment(comment){
-    return {
-        type: REMOVE_COMMENT,
-        comment: comment
-    }
-}
-
-
-
-
 // action creators 
 
 export function loadComments(id){
     return function(dispatch){
         return api.getAllComments(id).then(response => {
             if(response){
-                dispatch(getAllComments(response.data))
-            }
-        })
-    }
-}
-
-export function makeNewComment(comment) {
-    return function (dispatch) {
-        return api.makeComment(comment).then(response => {
-            if(response){
-                dispatch(makeComment(response.data))
+                dispatch(getAllComments(id, response.data))
             }
         })
     }
@@ -72,11 +29,22 @@ export function plusComment(commentid){
     }
 }
 
+
 export function minusComment(commentid){
     return function (dispatch) {
         return api.minusCommentVote(commentid).then(response => {
             if(response){
                 return dispatch(updateComment(response.data))
+            }
+        })
+    }
+}
+
+export function makeNewComment(comment) {
+    return function (dispatch) {
+        return api.makeComment(comment).then(response => {
+            if(response){
+                dispatch(makeComment(response.data))
             }
         })
     }
@@ -101,3 +69,40 @@ export function editComment(commentid){
         })
     }
 }
+
+// ALL COMMENT ACTIONS
+
+export function getAllComments(id, comments) {
+    return {
+        type: GET_ALL_COMMENTS,
+        comments: comments, 
+        id: id
+    }
+}
+
+export function makeComment(comment){
+    return{
+        type: MAKE_COMMENT,
+        comment: comment,
+        id: comment.parentId
+    }
+}
+
+export function updateComment(comment){
+    return {
+        type: UPDATE_COMMENT,
+        comment: comment,
+        id: comment.parentId
+    }
+}
+
+export function removeComment(comment){
+    return {
+        type: REMOVE_COMMENT,
+        comment: comment,
+        id: comment.parentid
+    }
+}
+
+
+

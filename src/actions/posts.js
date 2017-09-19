@@ -8,48 +8,6 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const PLUS_VOTE = 'PLUS_VOTE';
 export const MINUS_VOTE = 'MINUS_VOTE'
 
-
-
-// posts actions
-
-export function fetchPosts(posts){
-    return {
-        type: GET_POSTS,
-        posts: posts.filter(post => post.deleted !== false)
-    }
-}
-
-export function getPostByID(post){
-    return {
-        type: GET_POST_REF_ID,
-        post: [post]
-    }
-}
-
-export function createPost(post){
-    return {
-        type: MAKE_POST,
-        post: post
-    }
-}
-
-export function updatePost(post){
-    return {
-        type: UPDATE_POST,
-        post: post.data
-    }
-}
-
-export function removePost(post){
-    return {
-        type: REMOVE_POST,
-        post: post
-    }
-}
-
-
-
-
 // post action creators
 export function loadAllPosts(){
     return function (dispatch){
@@ -91,7 +49,7 @@ export function editPost(post){
     }
 }
 
-export function deletePost(post){
+export function deleteAPost(post){
     return function (dispatch) {
         return api.removePost(post).then(response => {
             if(response){
@@ -131,3 +89,45 @@ export function makePost(post){
         })
     }
 }
+
+// posts actions
+
+export function fetchPosts(posts){
+    return {
+        type: GET_POSTS,
+        posts: posts.filter(post => post.deleted !== false)
+    }
+}
+
+export function getPostByID(post){
+    return {
+        type: GET_POST_REF_ID,
+        post: [post]
+    }
+}
+
+export function createPost(post){
+    return {
+        type: MAKE_POST,
+        post: post
+    }
+}
+
+export function updatePost(post){
+    return {
+        type: UPDATE_POST,
+        post: post.data
+    }
+}
+
+export function removePost(post){
+    return {
+        type: REMOVE_POST,
+        post: post
+    }
+}
+
+
+
+
+

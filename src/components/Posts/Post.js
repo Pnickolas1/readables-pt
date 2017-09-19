@@ -19,22 +19,6 @@ class Post extends Component {
         this.minimizeModal = this.minimizeModal.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this)
     }
-    
-    // state = {
-    //     post: this.props.post,
-    //     comments: this.props.comments,
-    //     displayBody: this.props.body,
-    //     displayComment: this.props.displayComment,
-    //     categories: this.props.categories,
-    //     editPost: {
-    //         'title': '',
-    //         'body': '',
-    //         'category':''
-    //     },
-    //     makeEdits: false,
-    //     openModal: false,
-    //     }
-
         state = {
             editPost: {
               'title': '',
@@ -45,6 +29,10 @@ class Post extends Component {
             categories: [],
             openModal: false
           }
+
+    componentWillMount(){
+        this.props.actions.loadAllPosts(this.props.post.id)
+    }
 
     componentWillReceiveProps(newProps) {
         if (newProps.post){
@@ -58,18 +46,18 @@ class Post extends Component {
             } else {
                 this.setState({
                     post: null,
-                    comments: [],
+                    comments: newProps.comments,
                     displayBody: false,
                     displayComment: false,
                     categories: newProps.categories,
-                    })
-                }
+                })
             }
+        }
         
     deletePost = e => {
         e.preventDefault()
         let postid = e.target.id;
-        this.props.actions.deletePost(postid)
+        this.props.actions.deleteAPost(postid)
     }
 
     editPost = e => {
@@ -108,7 +96,7 @@ class Post extends Component {
     }
 
     render() {
-        if(this.state.post){
+        if(this.props.post){
             return (
                 <div className="container">
                     <div className="row">
@@ -121,8 +109,8 @@ class Post extends Component {
                                             <a href={'/'+this.props.post.category+'/'+this.props.post.id}>{this.props.post.title}</a><span className="text-muted" style={{fontSize: 16}}>{helpers.time(this.props.post.timestamp)}</span>
                                         </div>
                                         <div className="col-md-2 ml-md-auto">
-                                            <button className="btn btn-info btn-sm margin-15" id={this.props.post.id} onClick={this.editPost}><i className="fa fa-pencil"></i></button>
-                                            <button className="btn btn-danger btn-sm" id={this.state.post.id} onClick={this.deletePost.bind(this)}><i className="fa fa-trash"></i></button>
+                                            <button className="btn btn-info btn-sm margin-10" id={this.props.post.id} onClick={this.editPost}><i className="fa fa-pencil"></i></button>
+                                            <button className="btn btn-danger btn-sm margin-10" id={this.props.post.id} onClick={this.deletePost}>Delete</button>
                                         </div>
                                     </div>
                                 </h3>
@@ -135,10 +123,18 @@ class Post extends Component {
                                 </div>
                             </div>
                         </div>
-                        {this.props.comments  && this.props.showComments ? <div className="card-footer">
-                            <Comments comments={this.props.comments} post={this.props.post} />
-                        </div>: ""}
+                        <div className="row margin-top-10">
+                            <div className="col-md-12">
+                                {this.props.comments[this.props.post.id] !== undefined? 
+                                    <h6>Comments: <span className="badge badge-success">{this.props.comments[this.props.post.id].length}}</span></h6>
+                                    : 0}
+                            </div>
+                        </div>
                     </div>
+                    {this.props.comments && this.props.displayComments ? <div className="card-footer">
+                        <Comments comments={this.props.comments[this.props.comments.id]} post={this.props.post} />
+                        </div>: ""}
+
 
 
                     <Modal isOpen={this.state.openModal} contentLabel="Create Modal">
