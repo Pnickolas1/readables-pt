@@ -1,5 +1,5 @@
 import * as api from '../utils/api'
-import * as helper from "../utils/helper";
+import * as helper from "../utils/helpers";
 
 export const GET_POSTS = 'GET_POSTS'
 export const GET_POST_BY_ID = 'GET_POST_BY_ID'

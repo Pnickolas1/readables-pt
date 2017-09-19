@@ -5,7 +5,7 @@ import {
     ADD_COMMENT,
     UPDATE_COMMENT,
     DELETE_COMMENT
-  }from './actionType'
+  }from './types'
 
 
 

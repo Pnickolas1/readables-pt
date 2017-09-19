@@ -147,7 +147,7 @@ class Post extends React.Component {
                     </div>
                     <div className="form-group">
                       <label>Body</label>
-                      <textarea className="form-control" id="body" placeholder="Content of your post"  onChange={this.handleChange} value={this.state.editPost.body} required={true}/>
+                      <textarea className="form-control" id="body" placeholder="whats on your mind?"  onChange={this.handleChange} value={this.state.editPost.body} required={true}/>
                     </div>
                     <div className="form-check">
                       <label>Categories: </label>
