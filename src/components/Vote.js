@@ -6,12 +6,6 @@ import { connect } from 'react-redux';
 
 class Vote extends Component {
 
-    state = {
-        size: this.props.size,
-        id: this.props.id,
-        type: this.props.type
-    }
-
     plusVote = e => {
         e.preventDefault();
         switch(this.props.type) {
@@ -48,8 +42,8 @@ class Vote extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <button className="btn btn-success btn-sm" style={{height: this.props.size, width: this.props.size, lineHeight:0}} onClick={this.plusVote} ><i className="fa fa-plus" style={{fontSize: 10, marginLeft: -3, position: "absolute", marginTop: -5}}></i></button>
-          <button className="btn btn-danger btn-sm" style={{height: this.props.size, width: this.props.size, lineHeight:0, marginLeft:10}} onClick={this.minusVote} ><i className="fa fa-minus" style={{fontSize: 10, marginLeft: -3, position: "absolute", marginTop: -5}}></i></button>
+          <button className="btn btn-success btn-sm" style={{height: this.props.size, width: this.props.size, lineHeight:0}} onClick={this.plusVote} ><i className="fa fa-plus" style={{fontSize: 10, marginLeft: -3, position: "absolute", marginTop: -5}}>+</i></button>
+          <button className="btn btn-danger btn-sm" style={{height: this.props.size, width: this.props.size, lineHeight:0, marginLeft:10}} onClick={this.minusVote} ><i className="fa fa-minus" style={{fontSize: 10, marginLeft: -3, position: "absolute", marginTop: -5}}>-</i></button>
         </div>
       </div>
     )

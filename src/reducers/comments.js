@@ -7,30 +7,34 @@ import {
 import initialState from './initialState';
 
 export default function comments(state = initialState.comments, action) {
-    const { comment, comments } = action
+    const { comment, comments, postid } = action
 
     switch (action.type) {
 
         case GET_ALL_COMMENTS:
-            return comments
+            return{
+                ...state,
+                [postid]: comments
+            }
         
         case MAKE_COMMENT:
-            return [
+            return {
                 ...state,
-                Object.assign({}, comment )
-            ]
+                [postid]: state[postid].concat(comment)
+            }
 
 
         case UPDATE_COMMENT:
-            return state.map(currentComment =>{
-                if(currentComment.id === comment.id){
-                    return comment
+            let newComments = state[postid].filter(oldComments => oldComments.id !== comment.id)
+                newComments.push(comment)
+                return{
+                    [postid]: newComments
                 }
-                return currentComment
-            })
 
         case REMOVE_COMMENT:
-            return state.filter(currentComment => currentComment.id !== comment)
+            return {
+                [postid] : state[postid].filter(currentComment => currentComment.id !== comment)
+            }
 
         default: 
             return state

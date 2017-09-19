@@ -40,7 +40,7 @@ class Comments extends Component {
 
     componentWillReceiveProps(newProps){
       this.setState({
-        comments: helpers.sort(newProps.comments, this.state.sort),
+        comments: helpers.sort(newProps.comments[0], this.state.sort),
         sort: this.state.sort
       })
     }
@@ -71,7 +71,7 @@ class Comments extends Component {
     commentEdit = e => {
         e.preventDefault()
         let commentid = e.target.id
-        let comments = this.state.comments
+        let comments = this.state.comments[0]
         let comment = comments.filter( currenComment => currenComment.id === commentid)
         this.setState({
             openModal: true,
@@ -128,7 +128,7 @@ class Comments extends Component {
               <form onSubmit={this.addComment} className="margin-top-10">
                 <div className="row">
                   <div className="col-md-6">
-                    <input type="text" required name="comment" placeholder="Enter your comment" className="form-control"/>
+                    <input type="text" required name="comment" placeholder="Enter comment" className="form-control"/>
                   </div>
                   <div className="col-md-6">
                     <button className="btn btn-dark btn-md" type="submit">Comment</button>

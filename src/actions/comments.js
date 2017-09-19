@@ -1,108 +1,105 @@
 import * as api from '../utils/api';
 
-import { GET_ALL_COMMENTS, 
-    MAKE_COMMENT, 
-    UPDATE_COMMENT, 
-    REMOVE_COMMENT } from './actionType'
+import {
+    GET_COMMENTS,
+    ADD_COMMENT,
+    UPDATE_COMMENT,
+    DELETE_COMMENT
+  }from './actionType'
 
 
 
 // action creators 
 
-export function loadComments(id){
-    return function(dispatch){
-        return api.getAllComments(id).then(response => {
-            if(response){
-                dispatch(getAllComments(id, response.data))
-            }
-        })
-    }
-}
-
-export function plusComment(commentid){
+export function loadCommentsById(postId) {
     return function (dispatch) {
-        return api.plusCommentVote(commentid).then(response => {
-            if (response){
-                return dispatch(updateComment(response.data))
-            }
-        })
+      return api.getCommentsById(postId).then(response => {
+        if (response) {
+          dispatch(getComments(postId, response.data))
+        }
+      })
     }
-}
-
-
-export function minusComment(commentid){
+  }
+  
+  export function addCommentVote(commentId) {
     return function (dispatch) {
-        return api.minusCommentVote(commentid).then(response => {
-            if(response){
-                return dispatch(updateComment(response.data))
-            }
-        })
+      return api.incrementCommentVote(commentId).then(response => {
+        if (response) {
+          return dispatch(updateComment(response.data))
+        }
+      })
     }
-}
-
-export function makeNewComment(comment) {
+  }
+  
+  export function subtractCommentVote(commentId) {
     return function (dispatch) {
-        return api.makeComment(comment).then(response => {
-            if(response){
-                dispatch(makeComment(response.data))
-            }
-        })
+      return api.decrementCommentVote(commentId).then(response => {
+        if (response) {
+          return dispatch(updateComment(response.data))
+        }
+      })
     }
-}
+  }
+  
+  export function addNewComment(comment) {
+    return function (dispatch) {
+      return api.createComment(comment).then(response => {
+        if (response) {
+          dispatch(addComment(response.data))
+        }
+      })
+    }
+  }
+  
+  export function editComment(comment) {
+    return function (dispatch) {
+      return api.updateComment(comment).then(response => {
+        if (response) {
+          return dispatch(updateComment(response.data))
+        }
+      })
+    }
+  }
 
-export function removeAComment(commentid){
-    return function (dispatch){
-        return api.removeComment(commentid).then( response => {
-            if(response){
-                return dispatch(removeComment(response.data))
-            }
-        })
+  export function removeComment(commentId) {
+    return function (dispatch) {
+      return api.deleteComment(commentId).then(response => {
+        if (response) {
+          dispatch(deleteComment(response.data))
+        }
+      })
     }
-}
-
-export function editComment(commentid){
-    return function(dispatch){
-        return api.updateComment(commentid).then(response => {
-            if (response){
-                return dispatch(updateComment(response.data))
-            }
-        })
-    }
-}
+  }
 
 // ALL COMMENT ACTIONS
-
-export function getAllComments(id, comments) {
+export function getComments(postId, comments) {
     return {
-        type: GET_ALL_COMMENTS,
-        comments: comments, 
-        id: id
+      type: GET_COMMENTS,
+      comments :  comments,
+      postId: postId
     }
-}
-
-export function makeComment(comment){
-    return{
-        type: MAKE_COMMENT,
-        comment: comment,
-        id: comment.parentId
-    }
-}
-
-export function updateComment(comment){
+  }
+  
+  export function addComment(comment) {
     return {
-        type: UPDATE_COMMENT,
-        comment: comment,
-        id: comment.parentId
+      type: ADD_COMMENT,
+      comment: comment,
+      postId: comment.parentId
     }
-}
-
-export function removeComment(comment){
+  }
+  
+  export function updateComment(comment) {
     return {
-        type: REMOVE_COMMENT,
-        comment: comment,
-        id: comment.parentid
+      type: UPDATE_COMMENT,
+      comment: comment,
+      postId: comment.parentId
     }
-}
-
-
-
+  }
+  
+  export function deleteComment(comment) {
+    return {
+      type: DELETE_COMMENT,
+      comment: comment.id,
+      postId: comment.parentId
+    }
+  }

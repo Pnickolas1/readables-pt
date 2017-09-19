@@ -1,133 +1,129 @@
-import * as api from '../utils/api';
+import * as api from '../utils/api'
+import * as helper from "../utils/helper";
 
-export const GET_POSTS = 'GET_POSTS';
-export const GET_POST_REF_ID = 'GET_POST_REF_ID';
-export const MAKE_POST = 'MAKE_POST';
-export const REMOVE_POST = 'REMOVE_POST';
-export const UPDATE_POST = 'UPDATE_POST';
-export const PLUS_VOTE = 'PLUS_VOTE';
-export const MINUS_VOTE = 'MINUS_VOTE'
+export const GET_POSTS = 'GET_POSTS'
+export const GET_POST_BY_ID = 'GET_POST_BY_ID'
+export const ADD_POST = 'ADD_POST'
+export const DELETE_POST = 'DELETE_POST'
+export const UPDATE_POST = 'UPDATE_POST'
+export const UP_VOTE = 'UP_VOTE'
+export const DOWN_VOTE = 'DOWN_VOTE'
 
-// post action creators
-export function loadAllPosts(){
-    return function (dispatch){
-        return api.getAllPosts().then(response =>{
-            if(response){
-                dispatch(fetchPosts(response.data))
-            }
-        })
-    }
+
+export function loadPosts() {
+  return function (dispatch) {
+    api.getAllPosts().then(response  => {
+      if (response) {
+        dispatch(getPosts(response.data))
+      }
+    })
+  }
 }
 
-export function loadPostRefId(postid){
-    return function (dispatch){
-        return api.getPostRefID(postid).then(response => {
-            if(response){
-                dispatch(getPostByID(response.data))
-            }
-        })
-    }
+export function loadPostById(postId) {
+  return function (dispatch) {
+    return api.getPostById(postId).then(response  => {
+      if (response) {
+        dispatch(postById(response.data))
+      }
+    })
+  }
 }
 
-export function loadPostsByCategory(category){
-    return function (dispatch){
-        return api.getPostbyCategory(category).then(response =>{
-            if(response){
-                dispatch(fetchPosts(response.data))
-            }
-        })
-    }
+export function loadCategoriesWisePosts(category) {
+  return function (dispatch) {
+    return api.getPostsByCategory(category).then(response => {
+      if (response) {
+        dispatch(getPosts(response.data))
+      }
+    })
+  }
 }
 
-export function editPost(post){
-    return function(dispatch){
-        return api.updatePost(post).then(response => {
-            if(response){
-                dispatch(updatePost(response))
-            }
-        })
-    }
+export function removePost(postId) {
+  return function (dispatch) {
+    return api.deletePost(postId).then(response => {
+      if (response) {
+        dispatch(deletePost(postId))
+      }
+    })
+  }
 }
 
-export function deleteAPost(post){
-    return function (dispatch) {
-        return api.removePost(post).then(response => {
-            if(response){
-                dispatch(removePost(response))
-            }
-        })
-    }
-}
-
-export function addPostVote(postid){
-    return function (dispatch){
-        return api.plusPostVote(postid).then(response => {
-            if(response){
-                dispatch(updatePost(postid))
-            }
-        })
-    }
+export function editPost(post) {
+  return function (dispatch) {
+    return api.updatePost(post).then(response => {
+      if (response) {
+        dispatch(updatePost(response))
+      }
+    })
+  }
 }
 
 
-export function minusPostVote(postid){
-    return function (dispatch){
-        return api.minusPostVote(postid).then(response => {
-            if(response){
-                dispatch(updatePost(postid))
-            }
-        })
-    }
+export function addVote(postId) {
+  return function (dispatch) {
+    return api.incrementPostVote(postId).then(response => {
+      if (response) {
+        return dispatch(updatePost(response))
+      }
+    })
+  }
 }
 
-export function makePost(post){
-    return function (dispatch){
-        return api.writePost(post).then(response =>{
-            if(response){
-                dispatch(createPost(post))
-            }
-        })
-    }
+export function subtractVote(postId) {
+  return function (dispatch) {
+    return api.decrementPostVote(postId).then(response => {
+      if (response) {
+        return dispatch(updatePost(response))
+      }
+    })
+  }
 }
 
-// posts actions
-
-export function fetchPosts(posts){
-    return {
-        type: GET_POSTS,
-        posts: posts.filter(post => post.deleted !== false)
-    }
-}
-
-export function getPostByID(post){
-    return {
-        type: GET_POST_REF_ID,
-        post: [post]
-    }
-}
-
-export function createPost(post){
-    return {
-        type: MAKE_POST,
-        post: post
-    }
-}
-
-export function updatePost(post){
-    return {
-        type: UPDATE_POST,
-        post: post.data
-    }
-}
-
-export function removePost(post){
-    return {
-        type: REMOVE_POST,
-        post: post
-    }
+export function createPost(post) {
+  return function (dispatch) {
+    return api.createPost(post).then(response => {
+      if (response) {
+        return dispatch(addPost(post))
+      }
+    })
+  }
 }
 
 
 
+export function getPosts(posts) {
+  return {
+    type: GET_POSTS,
+    posts: posts.filter(post => post.deleted !== true)
+  }
+}
 
+export function postById(post) {
+  return {
+    type: GET_POST_BY_ID,
+    post: helper.isEmpty(post) ? [null] :[post]
+  }
+}
 
+export function addPost(post) {
+  return {
+    type: ADD_POST,
+    post: post
+  }
+}
+
+export function updatePost(post) {
+  return {
+    type: UPDATE_POST,
+    post: post.data
+  }
+}
+
+export function deletePost(post) {
+  return {
+    type: DELETE_POST,
+    post: post
+  }
+}

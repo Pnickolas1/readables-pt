@@ -100,7 +100,7 @@ class PostsPage extends Component {
                             <label className="control-label">Category</label>
                             <div className="alert alert-info" role="alert">
                                 {this.props.categories.map(category => (
-                                    <a href={"/"+category.path} style={{textDecorationColor: null}} key={category.path} className="margin-20">
+                                    <a href={"/"+category.path} style={{textDecorationColor: null}} key={category.path} className="margin-12">
                                         <h1 className="badge badge-secondary" style={{fontSize: 14 }}>{category.name}</h1>
                                     </a>
                                 ))}
