@@ -1,6 +1,6 @@
 # React Readables
 
-Description: This application is part of Udacity's React Nanodegree Program. The application is intended for the learning of Redux with React.
+Description: This application is part of Udacity's React Nanodegree Program. The application is intended for learning Redux with React.
 
 Notes: bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
