@@ -83,7 +83,7 @@ class PostsPage extends Component {
       newPost: {
         'title': '',
         'body': '',
-        'category': ''
+        'category': 'react'
       }
     })
   }
