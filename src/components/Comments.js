@@ -29,7 +29,7 @@ class Comments extends React.Component {
       body: e.target.comment.value,
       parentId: this.props.post.id,
       timestamp: Date.now(),
-      author: 'PassionInfinite',
+      author: 'LateRndPick',
       voteScore: 1
     }
     this.props.actions.addNewComment(comment)

@@ -76,7 +76,7 @@ class PostsPage extends Component {
     let post = this.state.newPost;
     post['id'] = shortid.generate()
     post['timestamp'] = Date.now()
-    post['author'] = 'PassionInfinite'
+    post['author'] = 'LateRndPick'
     post['voteScore'] = 1
     this.props.actions.createPost(post)
     this.setState({
