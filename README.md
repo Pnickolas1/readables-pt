@@ -8,6 +8,16 @@ Notes: bootstrapped with [Create React App](https://github.com/facebookincubator
 1. Clone this repo and CD into project directory and run `npm install`
 2. After dependencies finish downloading, run `npm start`
 
-# Backend Server
 
+
+# Backend Server
+API server is provided by the React team at Udacity at the link below. You will also need to clone this repo to run this application.
+
+https://github.com/udacity/reactnd-project-readable-starter
+
+* After cloning the repo above:
+    - `cd api-server`
+    - `npm install`
+    - `node server`
+    
 
