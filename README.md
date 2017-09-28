@@ -11,7 +11,7 @@ Notes: bootstrapped with [Create React App](https://github.com/facebookincubator
 
 
 # Backend Server
-API server is provided by the React team at Udacity at the link below. You will also need to clone this repo to run this application.
+API server is provided by the team at Udacity at the link below. You will also need to clone this repo to run this application.
 
 https://github.com/udacity/reactnd-project-readable-starter
 
@@ -19,5 +19,7 @@ https://github.com/udacity/reactnd-project-readable-starter
     - `cd api-server`
     - `npm install`
     - `node server`
-    
+
+* This will start your backend server which will listen on port `3001`
+     - `http://localhost:3001`
 
