@@ -23,5 +23,5 @@ https://github.com/udacity/reactnd-project-readable-starter
 * This will start your backend server which will listen on port `3001`
      - `http://localhost:3001`
 
-##### UI
+### User-Interface
 ![Alt text](https://raw.githubusercontent.com/Pnickolas1/readables-pt/master/readmeAssets/UI.png "Bootstrap UI")
