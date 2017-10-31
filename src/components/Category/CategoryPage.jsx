@@ -46,7 +46,7 @@ class CategoryPage extends Component {
               <label className="control-label">Categories</label>
               <div className="alert alert-info" role="alert">
                 {this.props.categories.map(category => (
-                  <a href={"/"+category.path} style={{textDecoration:null}} key={category.path} className="margin-15"><h1 className="badge badge-secondary" style={{fontSize: 16}}>{category.name}</h1></a>
+                  <a href={"/"+category.path} style={{textDecoration:null}} key={category.path} className="margin-15"><h5 className="badge badge-secondary" style={{fontSize: 16}}>{category.name}</h5></a>
                 ))}
               </div>
             </div>
